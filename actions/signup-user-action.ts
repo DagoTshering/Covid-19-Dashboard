@@ -9,8 +9,12 @@ type Res =
   | { success: false; error: string; statusCode: 500 }
 
 export async function signupUserAction(values: unknown): Promise<Res> {
+
     // @ts-ignore
     values.email = undefined;
+    
+    console.log(values);
+
     const parsedValues = v.safeParse(SignupSchema, values);
     if (!parsedValues.success) {
         const flatErrors = v.flatten(parsedValues.issues);
